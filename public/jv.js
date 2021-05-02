@@ -1,3 +1,4 @@
+
 window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth - 170, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
