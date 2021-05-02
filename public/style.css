@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    justify-content: center;
+
+    background-image: radial-gradient(
+        rgba(26, 7, 46, 0.44), rgb(4, 0, 0)
+      ),
+      url("https://thefulldomeblog.files.wordpress.com/2013/06/cropped-starglobe-maya-render.jpg");
+    
+    background-size: inherit;
+    display: flex;
+    flex-direction: row;
+  }
+  canvas {
+    display: block;
+  }
+  div {
+    color: white;
+    background-color: transparent;
+    text-align: center;
+opacity: 0.9;
+position: fixed;
+display: inline-block;
+  }
+  .button{
+      margin: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  justify-content: space-between;
+  }

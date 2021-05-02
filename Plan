@@ -1,0 +1,189 @@
+What's my plan? 
+ - Learn three.js and include my synce week project with this? or Make a 3D game
+
+If I'm making a game, what would the game be? 
+ - possible 3D adventure game 
+ - 3D platform game? HMMMM 
+
+ Step 1: 
+ - Learn Three.js 
+   
+   <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My first three.js app</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center">Welcome to my Three.js World</h1>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"
+      integrity="sha512-yNJzAsg5JyP91u+sLHlUDULMBd3hmEiVkYeeN1cQBKaLZ7EyT6oH2u5THNIRM2Fu6VKcZJv+F/QAp1h/qzy9Ow=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+      //three things we need are 1. scene, 2. camera, 3.renderer
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+	  
+	  scene.fog = new THREE.FogExp2( 0xf0fff0, 0.1);
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      camera.position.z = 1;
+	  camera.position.x= 1;
+      renderer.setClearColor("lightblue");
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      //append renderer to the domElement
+      document.body.appendChild(renderer.domElement);
+
+
+
+      //make a plane
+      const geometry = new THREE.SphereGeometry(10, 20, 30);
+
+	  var material = new THREE.MeshStandardMaterial( { color: 'darkgreen' ,shading:THREE.FlatShading} )
+earth = new THREE.Mesh( geometry, material );
+	  earth.rotation.x = 5
+	 earth.position.y = -10
+	 earth.rotation.y = 8
+	 earth.rotation.set(3,2,1)
+      scene.add(earth);
+
+
+
+
+
+      //when renderer the 3d object you need the geometry and the material
+      const geometry1 = new THREE.BoxGeometry(1, 1, 1); //define (x,y,z) of the box
+      const material1 = new THREE.MeshLambertMaterial({ color: "purple" });
+      const cube1 = new THREE.Mesh(geometry1, material1);
+      cube1.position.x = -1;
+	  cube1.rotation.x = 2
+      scene.add(cube1);
+      //add the mesh
+
+
+
+      //create second cube/mesh
+      const geometry2 = new THREE.BoxGeometry(1, 1, 1); //define (x,y,z) of the box
+      const material2 = new THREE.MeshLambertMaterial({ color: "red" });
+      const cube2 = new THREE.Mesh(geometry2, material2);
+      cube2.position.x = 2;
+	  cube2.rotation.x = 2;
+      scene.add(cube2);
+
+
+      //WHAT IF I WANT TO MOVE THE CUBE POSITION? You actually dont move
+      //the geometry you move the mesh itself so
+      // cube.position.x = 2; or cuube.position.set(2,2,-2)
+      //cube.rotation.set(1,2,1) rotates
+      //cube.scale.set(2,3,4) longer
+
+
+
+      //now add in a light
+      //PointLight(color, intensity, distant)
+      const light = new THREE.DirectionalLight( 0xffffff, 10 );
+      light.position.set(10, 0, 25);
+      //light.position.set(x,y,z)
+      scene.add(light);
+      //window resizing function helps the scene to fit the window regardless of how you change it
+      window.addEventListener("resize", () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.render(scene, camera);
+      });
+      //we can either use this animate function or - Using GSAP Timeline to animate 3D objects
+      const animate = function () {
+        requestAnimationFrame(animate);
+
+        earth.rotation.x += 0.0001;
+        // cube.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+      };
+      animate();
+      //create a new timeline with a delay of 3;
+      //this.tl is the new insatnce of the timeline;
+      //this.tl.to(mesh scale/rotation/position, duration of 1, {scale on the x axis, set an ease})
+      this.tl = new TimelineMax({ paused: true }).delay(0.3);
+      this.tl.to(cube1.scale, 1, { x: 2, ease: Expo.easeOut });
+      this.tl.to(cube1.rotation, 1, { z: Math.PI * 0.5, ease: Expo.easeOut });
+      this.tl.to(cube1.scale, 1, { z: 2, ease: Expo.easeOut });
+      this.tl.to(cube1.position, 1, { x: 1, ease: Expo.easeOut });
+    //   this.tl.to(cube1.position, 1, { x: -1, ease: Expo.easeOut });
+      //-------------------------------------------------------------/ animation for second cube
+      this.tl2 = new TimelineMax({ paused: true }).delay(0.2);
+      this.tl2.to(cube2.scale, 1, { x: 2, ease: Expo.easeOut });
+      this.tl2.to(cube2.rotation, 1, { z: Math.PI * 0.5, ease: Expo.easeOut });
+      this.tl2.to(cube2.scale, 1, { z: 2, ease: Expo.easeOut });
+      this.tl2.to(cube2.position, 1, { x: 2, ease: Expo.easeOut });
+    //   this.tl2.to(cube2.position, 1, { x: -1, ease: Expo.easeOut });
+      //use raycaster if you want to click on something for it to move
+      //first create
+      //const rayCaster = new THREE.RayCAster();
+      //const mouse = new THREE.Vector2()
+      //then on the next line you can replace document.addEventListener
+      //to window.addEventListener('mousemove', onMouseMove);
+      // const onMouseMove = (event) => {
+      // 	event.preventDefault();
+      // 	mouse.x = (event.clientX / window.innerWidth) * 2 -1;
+      // 	mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+      // 	raycasteer.setFromCamera(mouse , camera);
+      // 	const interesects = raycaster.intersectObjects(scene.children, true);
+      // 	for(let i = 0; i < intersects.length; i++){
+      // 		intersects[i].object.material.color.set(0xff0000)
+      // 					this.tl = new TimelineMax().delay(.3);
+      // this.tl.to(intersects[i].object.scale, 1, {x:2, ease: Expo.easeOut});
+      // this.tl.to(intersects[i].object.rotation, 1, {y: Math.PI*.5, ease: Expo.easeOut});
+      // this.tl.to(intersects[i].object.scale, 1, {y:2, ease: Expo.easeOut});
+      // this.tl.to(intersects[i].object.position, 1, {x:2, ease: Expo.easeOut});
+      // this.tl.to(intersects[i].object.position, 1, {x:-1, ease: Expo.easeOut})
+      // 	}
+      // }
+      // window.addEventListener('mousemove', onMouseMove);
+      document.addEventListener("click", () => {
+        this.tl.play();
+        this.tl2.play();
+      });
+      // loading 3D models: we recommend using glTF (GL Transmission Format). Because glTF is focused
+      //on runtime asset delivery, it is compact to transmit and fast to load. Features include meshes,
+      //materials, textures, skins, skeletons, morph targets, animations, lights, and cameras.
+      //Public-domain glTF files are available on sites like Sketchfab, or various tools include glTF export:
+
+      // Blender by the Blender Foundation
+      // Substance Painter by Allegorithmic
+      // Modo by Foundry
+      // Toolbag by Marmoset
+      // Houdini by SideFX
+      // Cinema 4D by MAXON
+      // COLLADA2GLTF by the Khronos Group
+      // FBX2GLTF by Facebook
+      // OBJ2GLTF by Analytical Graphics Inc
+      // …and many more
+      //   const loader = new THREE.GLTFLoader();
+
+      // 	loader.load( 'public/adamHead.zip', function ( gltf ) {
+
+      // 	scene.add( gltf.scene );
+
+      // 	});
+    </script>
+  </body>
+</html>
