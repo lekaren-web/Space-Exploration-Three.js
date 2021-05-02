@@ -22,6 +22,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
 
-app.listen('8080', () => {
+app.listen(process.env.PORT||'8080', () => {
 console.log('Running on port 8080')
 })
