@@ -3,85 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <title>Space Exploration</title>
-    <style>
-      body {
-        margin: 0;
-        justify-content: center;
-
-        background-image: radial-gradient(
-            rgba(44, 3, 110, 0.267),
-            rgba(0, 0, 0, 0.205)
-          ),
-          url("https://thefulldomeblog.files.wordpress.com/2013/06/cropped-starglobe-maya-render.jpg");
-
-        background-size: inherit;
-        display: flex;
-        flex-direction: row;
-      }
-      canvas {
-        display: block;
-
-      }
-      .header1 {
-        color: white;
-        background-color: transparent;
-        text-align: center;
-        opacity: 0.9;
-        position: fixed;
-        display: inline-block;
-      }
-      .button {
-        margin: 20px;
-        padding: 10px;
-        border-radius: 5px;     
-        background-image: radial-gradient(rgb(16, 0, 31), rgb(46, 9, 120));                                                                                    
-      }
-      h1 {
-        font-family: monospace;
-        font-stretch: extra-expanded;
-        font-size: 40px;
-        letter-spacing: 35px;
-        margin: 35px;
-      }
-      h2 {
-        font-family: monospace;
-        font-size: 26px;
-        letter-spacing: 3px;
-        color: white;
-      }
-     label {
-      line-height: 45px;
-
-        font-family: monospace;
-        font-size: 16px;
-        color: white;
-        margin: 10 px;
-      }
-      div {
-        background-image: radial-gradient(rgba(44, 3, 110, 0.173),
-            rgba(0, 0, 0, 0));
-        display:flex;
-        flex-direction: column;
-       text-align: center;
-      }
-      input {
-        margin: 20px;
-      }
-    </style>
+    <link rel='styleSheet' href= 'style.css' />
   </head>
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
-
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"
       integrity="sha512-yNJzAsg5JyP91u+sLHlUDULMBd3hmEiVkYeeN1cQBKaLZ7EyT6oH2u5THNIRM2Fu6VKcZJv+F/QAp1h/qzy9Ow=="
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+
     <script>
-      //three things we need are 1. scene, 2. camera, 3.renderer
-      var divContainer = document.createElement("container");
+     const divContainer = document.createElement("container");
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(
@@ -90,22 +25,11 @@
         0.1,
         1000
       );
-      
-
-      window.addEventListener("resize", () => {
-        renderer.setSize(window.innerWidth - 170, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.render(scene, camera);
-      });
 
       const renderer = new THREE.WebGLRenderer({ alpha: true });
       camera.position.z = 500;
       camera.position.x = 0;
       camera.position.y = 0;
-
-    
-
       renderer.setSize(window.innerWidth - 170, window.innerHeight);
 
       document.body.appendChild(renderer.domElement);
@@ -121,6 +45,7 @@
       sun.position.x = 0;
       sun.receiveShadow = true;
       sun.castShadow = true;
+      sun.name = 'Sun'
       scene.add(sun);
 
       const light = new THREE.DirectionalLight("white", 1.3);
@@ -149,7 +74,7 @@
       merc.rotation.set(9, 3, 3);
       merc.receiveShadow = true;
       merc.castShadow = true;
-
+      merc.name = 'Mecury'
       scene.add(merc);
 
       //venus
@@ -157,7 +82,6 @@
 
       const venmat = new THREE.MeshStandardMaterial({
         color: "orange",
-        // shading: THREE.FlatShading,
       });
 
       ven = new THREE.Mesh(vengeo, venmat);
@@ -169,14 +93,12 @@
       ven.rotation.set(9, 3, 3);
       ven.receiveShadow = true;
       ven.castShadow = true;
-
+      ven.name= 'Venus'
       scene.add(ven);
-      //Earth layer 1
       const earthgeo = new THREE.SphereGeometry(7, 60, 100);
 
       const earthmat = new THREE.MeshStandardMaterial({
         color: "tan",
-        // shading: THREE.FlatShading,
       });
 
       earth = new THREE.Mesh(earthgeo, earthmat);
@@ -188,14 +110,13 @@
       earth.rotation.set(9, 3, 3);
       earth.receiveShadow = true;
       earth.castShadow = true;
-
+      earth.name = 'Earth'
       scene.add(earth);
       //earthLayer2
       const earthgeo2 = new THREE.SphereGeometry(7, 60, 100);
 
       const earthmat2 = new THREE.MeshStandardMaterial({
         color: "blue",
-        // shading: THREE.FlatShading,
       });
 
       earth2 = new THREE.Mesh(earthgeo2, earthmat2);
@@ -214,7 +135,6 @@
 
       const marsmat = new THREE.MeshStandardMaterial({
         color: "red",
-        // shading: THREE.FlatShading,
       });
 
       mars = new THREE.Mesh(marsgeo, marsmat);
@@ -226,7 +146,7 @@
       mars.rotation.set(9, 3, 3);
       mars.receiveShadow = true;
       mars.castShadow = true;
-
+      mars.name = 'Mars'
       scene.add(mars);
       //jupiter
 
@@ -245,14 +165,13 @@
       jup.rotation.set(9, 3, 3);
       jup.receiveShadow = true;
       jup.castShadow = true;
-
+      jup.name = 'Jupiter'
       scene.add(jup);
       //satturn
       const satgeo = new THREE.SphereGeometry(7, 60, 80);
 
       const satmat = new THREE.MeshStandardMaterial({
         color: "coral",
-        // shading: THREE.FlatShading,
       });
       sat = new THREE.Mesh(satgeo, satmat);
       sat.rotation.x = 9;
@@ -263,14 +182,13 @@
       sat.rotation.set(9, 3, 3);
       sat.receiveShadow = true;
       sat.castShadow = true;
-
+      sat.name = 'Saturn'
       scene.add(sat);
       //uranus
       const urangeo = new THREE.SphereGeometry(7, 60, 80);
 
       const uranmat = new THREE.MeshStandardMaterial({
         color: "teal",
-        // shading: THREE.FlatShading,
       });
       uran = new THREE.Mesh(urangeo, uranmat);
       uran.rotation.x = 9;
@@ -281,14 +199,13 @@
       uran.rotation.set(9, 3, 3);
       uran.receiveShadow = true;
       uran.castShadow = true;
-
+      uran.name = 'Uranus'
       scene.add(uran);
       //neptune
       const nepgeo = new THREE.SphereGeometry(8, 60, 80);
 
       const nepmat = new THREE.MeshStandardMaterial({
         color: "blue",
-        // shading: THREE.FlatShading,
       });
       nep = new THREE.Mesh(nepgeo, nepmat);
       nep.rotation.x = 9;
@@ -299,6 +216,7 @@
       nep.rotation.set(9, 3, 3);
       nep.receiveShadow = true;
       nep.castShadow = true;
+      nep.name = 'Neptune' 
 
       scene.add(nep);
       //pluto
@@ -306,7 +224,6 @@
 
       const plumat = new THREE.MeshStandardMaterial({
         color: "beige",
-        // shading: THREE.FlatShading,
       });
       plu = new THREE.Mesh(nepgeo, nepmat);
       plu.rotation.x = 9;
@@ -317,18 +234,9 @@
       plu.rotation.set(9, 3, 3);
       plu.receiveShadow = true;
       plu.castShadow = true;
-
+      plu.name = 'Pluto'
       scene.add(plu);
       // ROTATE
-      const animate = function () {
-        requestAnimationFrame(animate);
-        camera.rotation.z -= document.getElementById("speed").value / 450;
-        earth2.rotation.y += 0.00000001;
-        ven.rotation.x -= 0.000002;
-        mars.rotation.y -= 0.000001;
-        jup.rotation.y += 0.0000001;
-        renderer.render(scene, camera);
-      };
 
       this.tl = new TimelineMax({ paused: true }).delay(0.3);
       this.tl1 = new TimelineMax({ paused: true }).delay(0.3);
@@ -342,57 +250,6 @@
       this.tl9 = new TimelineMax({ paused: true }).delay(0.3);
       this.tl10 = new TimelineMax({ paused: true }).delay(0.3);
       this.tl11 = new TimelineMax({ paused: true }).delay(0.3);
-      //line
-      // this.tl.to(camera.position, 10, { z: 290 });
-      this.tl1.to(ven.position, 4, { x: 1 });
-      this.tl2.to(sun.position, 4, { x: 1 });
-      this.tl3.to(merc.position, 4, { x: 1 });
-      this.tl4.to(earth.position, 4, { x: 1 });
-      this.tl5.to(earth2.position, 4, { x: 1 });
-      this.tl6.to(mars.position, 4, { x: 1 });
-      this.tl7.to(jup.position, 4, { x: 1 });
-      this.tl8.to(sat.position, 4, { x: 1 });
-      this.tl9.to(uran.position, 4, { x: 1 });
-      this.tl10.to(nep.position, 4, { x: 1 });
-      this.tl11.to(plu.position, 4, { x: 1 });
-
-      //align
-      // this.tl.to(camera.position, 10, { z: 480 });
-      this.tl3.to(merc.position, 9, { y: 60 });
-      this.tl1.to(ven.position, 9, { y: 80 });
-      this.tl4.to(earth.position, 9, { y: 100 });
-      this.tl5.to(earth2.position, 9, { y: 120 });
-      this.tl6.to(mars.position, 9, { y: 140 });
-      this.tl7.to(jup.position, 9, { y: 160 });
-      this.tl8.to(sat.position, 9, { y: 180 });
-      this.tl9.to(uran.position, 9, { y: 200 });
-      this.tl10.to(nep.position, 9, { y: 220 });
-      this.tl11.to(plu.position, 9, { y: 240 });
-
-      //undo
-      this.tl3.to(merc.position, 9, { y: 50 }); //
-      this.tl1.to(ven.position, 9, { y: 70 }); //
-      this.tl4.to(earth.position, 9, { y: -80 }); //
-      this.tl5.to(earth2.position, 9, { y: -80 }); //
-      this.tl6.to(mars.position, 9, { y: -150 }); //
-      this.tl7.to(jup.position, 9, { y: -190 }); //
-      this.tl8.to(sat.position, 9, { y: -220 }); //
-      this.tl9.to(uran.position, 9, { y: 270 }); //
-      this.tl10.to(nep.position, 9, { y: 300 }); //
-      this.tl11.to(plu.position, 9, { y: 340 });
-
-      this.tl1.to(ven.position, 6, { x: 70 }); //
-      this.tl3.to(merc.position, 6, { x: 50 }); //
-      this.tl4.to(earth.position, 6, { x: 80 }); //
-      this.tl5.to(earth2.position, 6, { x: 80 }); //
-      this.tl6.to(mars.position, 6, { x: -50 }); //
-      this.tl7.to(jup.position, 6, { x: 100 }); //
-      this.tl8.to(sat.position, 6, { x: 190 }); //
-      this.tl9.to(uran.position, 6, { x: 9 }); //
-      this.tl10.to(nep.position, 6, { x: 90 });
-      this.tl11.to(plu.position, 6, { x: 10 });
-
-      animate();
     </script>
     <div class='header1'>
       <h1>Space Exploration</h1>
@@ -400,46 +257,10 @@
     <div class="menu">
       <h2>Animation Menu</h2>
       <label>Rotation Speed</label>
-      <input id="speed" type="range" min="5" max="10" />
+      <input id="speed" type="range" min="0" max="10" value='5' />
       <label> Align Planets</label>
       <button type="button" class="button"></button>
-      <script>
-        document.querySelector("button").addEventListener("click", () => {
-          tl.play().restart();
-          tl1.play().restart();
-          tl2.play().restart();
-          tl3.play().restart();
-          tl4.play().restart();
-          tl5.play().restart();
-          tl6.play().restart();
-          tl7.play().restart();
-          tl8.play().restart();
-          tl9.play().restart();
-          tl10.play().restart();
-          tl11.play().restart();
-        });
-
-        document.addEventListener("mousewheel", (event) => {
-          camera.position.z += event.deltaY / 6;
-
-        });
-        renderer.render(scene, camera);
-        // const controls = new DragControls( objects, camera, renderer.domElement );
-
-// add event listener to highlight dragged objects
-
-// controls.addEventListener( 'dragstart', function ( event ) {
-
-// 	event.object.material.emissive.set( 0xaaaaaa );
-
-// } );
-
-// controls.addEventListener( 'dragend', function ( event ) {
-
-// 	event.object.material.emissive.set( 0x000000 );
-
-// } );
-      </script>
+      <script src='./jv.js'></script>
     </div>
 
     </body>

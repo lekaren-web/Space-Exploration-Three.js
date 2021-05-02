@@ -1,30 +1,63 @@
 body {
-    margin: 0;
-    justify-content: center;
+  margin: 0;
+  justify-content: center;
 
-    background-image: radial-gradient(
-        rgba(26, 7, 46, 0.44), rgb(4, 0, 0)
-      ),
-      url("https://thefulldomeblog.files.wordpress.com/2013/06/cropped-starglobe-maya-render.jpg");
-    
-    background-size: inherit;
-    display: flex;
-    flex-direction: row;
-  }
-  canvas {
-    display: block;
-  }
-  div {
-    color: white;
-    background-color: transparent;
-    text-align: center;
-opacity: 0.9;
-position: fixed;
-display: inline-block;
-  }
-  .button{
-      margin: 20px;
-  padding: 5px;
-  border-radius: 5px;
-  justify-content: space-between;
-  }
+  background-image: radial-gradient(
+      rgba(44, 3, 110, 0.267),
+      rgba(0, 0, 0, 0.205)
+    ),
+    url("https://thefulldomeblog.files.wordpress.com/2013/06/cropped-starglobe-maya-render.jpg");
+
+  background-size: inherit;
+  display: flex;
+  flex-direction: row;
+}
+canvas {
+  display: block;
+
+}
+.header1 {
+  color: white;
+  background-color: transparent;
+  text-align: center;
+  opacity: 0.9;
+  position: fixed;
+  display: inline-block;
+}
+.button {
+  margin: 20px;
+  padding: 10px;
+  border-radius: 5px;     
+  background-image: radial-gradient(rgb(16, 0, 31), rgb(46, 9, 120));                                                                                    
+}
+h1 {
+  font-family: monospace;
+  font-stretch: extra-expanded;
+  font-size: 40px;
+  letter-spacing: 35px;
+  margin: 35px;
+}
+h2 {
+  font-family: monospace;
+  font-size: 26px;
+  letter-spacing: 3px;
+  color: white;
+}
+label {
+line-height: 45px;
+
+  font-family: monospace;
+  font-size: 16px;
+  color: white;
+  margin: 10 px;
+}
+div {
+  background-image: radial-gradient(rgba(44, 3, 110, 0.173),
+      rgba(0, 0, 0, 0));
+  display:flex;
+  flex-direction: column;
+ text-align: center;
+}
+input {
+  margin: 20px;
+}
