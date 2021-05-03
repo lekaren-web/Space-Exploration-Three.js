@@ -1,4 +1,5 @@
 
+const loader = new THREE.TextureLoader();
 window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth - 170, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -8,7 +9,8 @@ window.addEventListener("resize", () => {
   const geometry = new THREE.SphereGeometry(35, 70, 80);
       // sun
       const material = new THREE.MeshStandardMaterial({
-        color: "gold",
+        map: loader.load('sun.png'),
+        color:'coral'
       });
       sun = new THREE.Mesh(geometry, material);
       sun.position.z = 1;
@@ -18,21 +20,45 @@ window.addEventListener("resize", () => {
       sun.castShadow = true;
       sun.name = 'Sun'
       scene.add(sun);
-      const light = new THREE.DirectionalLight("white", 1.3);
+      const light = new THREE.DirectionalLight("white", 0.9);
       light.position.set(1, 0, 6);
 
       scene.add(light);
-      const light2 = new THREE.DirectionalLight("orange", 0.6);
+      const light2 = new THREE.DirectionalLight("orange", 0.9);
       light2.position.set(1, 0, 3);
 
       scene.add(light2);
-      const light3 = new THREE.DirectionalLight("brown", 0.6);
+      const light3 = new THREE.DirectionalLight("brown", 0.9);
       light3.position.set(1, 0, 3);
 
       scene.add(light3);
+
+////
+      const light4 = new THREE.DirectionalLight("white", 0.9);
+      light4.position.set(-1, 10, -6);
+
+      scene.add(light4);
+      const light5 = new THREE.DirectionalLight("orange", 0.9);
+      light5.position.set(-1, 10, -3);
+
+      scene.add(light5);
+      const light6 = new THREE.DirectionalLight("brown", 0.9);
+      light6.position.set(-1, 10, -3);
+
+      scene.add(light6);
+      const light7 = new THREE.DirectionalLight("white", 0.9);
+      light7.position.set(-9, -10, -6);
+
+      scene.add(light7);
+
+      const light8 = new THREE.DirectionalLight("white", 0.9);
+      light8.position.set(10, -10, -6);
+
+      scene.add(light8)
+      
   const mercgeo = new THREE.SphereGeometry(6, 60, 100);
       const mercmat = new THREE.MeshStandardMaterial({
-        color: "tan",
+        map: loader.load('merc.jpeg'),
       });
   merc = new THREE.Mesh(mercgeo, mercmat);
   merc.rotation.x = 9;
@@ -49,7 +75,7 @@ window.addEventListener("resize", () => {
   const vengeo = new THREE.SphereGeometry(8, 60, 100);
 
   const venmat = new THREE.MeshStandardMaterial({
-    color: "orange",
+    map: loader.load('venus.jpeg'),
   });
 
   ven = new THREE.Mesh(vengeo, venmat);
@@ -66,7 +92,8 @@ window.addEventListener("resize", () => {
   const earthgeo = new THREE.SphereGeometry(7, 60, 100);
 
   const earthmat = new THREE.MeshStandardMaterial({
-    color: "tan",
+    map: loader.load('earth.png'),
+    color: 'lightblue'
   });
 
   earth = new THREE.Mesh(earthgeo, earthmat);
@@ -81,28 +108,28 @@ window.addEventListener("resize", () => {
   earth.name = 'Earth'
   scene.add(earth);
   //earthLayer2
-  const earthgeo2 = new THREE.SphereGeometry(7, 60, 100);
+//   const earthgeo2 = new THREE.SphereGeometry(7, 60, 100);
 
-  const earthmat2 = new THREE.MeshStandardMaterial({
-    color: "blue",
-  });
+//   const earthmat2 = new THREE.MeshStandardMaterial({
+//     color: "blue",
+//   });
 
-  earth2 = new THREE.Mesh(earthgeo2, earthmat2);
-  earth2.rotation.x = 9;
-  earth2.position.y = -80;
-  earth2.position.x = 80;
-  earth2.position.z = 1;
-  earth2.rotation.y = 8;
-  earth2.rotation.set(9, 3, 3);
-  earth2.receiveShadow = true;
-  earth2.castShadow = true;
+//   earth2 = new THREE.Mesh(earthgeo2, earthmat2);
+//   earth2.rotation.x = 9;
+//   earth2.position.y = -80;
+//   earth2.position.x = 80;
+//   earth2.position.z = 1;
+//   earth2.rotation.y = 8;
+//   earth2.rotation.set(9, 3, 3);
+//   earth2.receiveShadow = true;
+//   earth2.castShadow = true;
 
-  scene.add(earth2);
+//   scene.add(earth2);
   //mars
   const marsgeo = new THREE.SphereGeometry(8, 60, 80);
 
   const marsmat = new THREE.MeshStandardMaterial({
-    color: "red",
+    map: loader.load('mars.jpeg'),
   });
 
   mars = new THREE.Mesh(marsgeo, marsmat);
@@ -121,7 +148,7 @@ window.addEventListener("resize", () => {
   const jupgeo = new THREE.SphereGeometry(8, 50, 100);
 
   const jupmat = new THREE.MeshStandardMaterial({
-    color: "brown",
+    map: loader.load('jup.jpeg'),
   });
 
   jup = new THREE.Mesh(jupgeo, jupmat);
@@ -139,7 +166,8 @@ window.addEventListener("resize", () => {
   const satgeo = new THREE.SphereGeometry(7, 60, 80);
 
   const satmat = new THREE.MeshStandardMaterial({
-    color: "coral",
+    map: loader.load('sat.jpeg'),
+
   });
   sat = new THREE.Mesh(satgeo, satmat);
   sat.rotation.x = 9;
@@ -156,7 +184,8 @@ window.addEventListener("resize", () => {
   const urangeo = new THREE.SphereGeometry(7, 60, 80);
 
   const uranmat = new THREE.MeshStandardMaterial({
-    color: "teal",
+    map: loader.load('uran.jpeg'),
+
   });
   uran = new THREE.Mesh(urangeo, uranmat);
   uran.rotation.x = 9;
@@ -173,7 +202,7 @@ window.addEventListener("resize", () => {
   const nepgeo = new THREE.SphereGeometry(8, 60, 80);
 
   const nepmat = new THREE.MeshStandardMaterial({
-    color: "blue",
+    map: loader.load('nep.jpeg'),
   });
   nep = new THREE.Mesh(nepgeo, nepmat);
   nep.rotation.x = 9;
@@ -191,11 +220,13 @@ window.addEventListener("resize", () => {
   const plugeo = new THREE.SphereGeometry(3, 60, 80);
 
   const plumat = new THREE.MeshStandardMaterial({
-    color: "beige",
+    map: loader.load('plu.png'),
+
+
   });
-  plu = new THREE.Mesh(nepgeo, nepmat);
+  plu = new THREE.Mesh(plugeo, plumat);
   plu.rotation.x = 9;
-  plu.position.y = 340;
+  plu.position.y = 400;
   plu.position.x = 10;
   plu.rotation.y = 8;
   plu.position.z = 6;
@@ -207,7 +238,7 @@ window.addEventListener("resize", () => {
   const animate = function () {
     requestAnimationFrame(animate);
     camera.rotation.z -= document.getElementById("speed").value / 450;
-    earth2.rotation.y += 0.00000001;
+    // earth2.rotation.y += 0.00000001;
     ven.rotation.x -= 0.000002;
     mars.rotation.y -= 0.000001;
     jup.rotation.y += 0.0000001;
@@ -218,7 +249,7 @@ window.addEventListener("resize", () => {
   this.tl2 = new TimelineMax({ paused: true }).delay(0.3);
   this.tl3 = new TimelineMax({ paused: true }).delay(0.3);
   this.tl4 = new TimelineMax({ paused: true }).delay(0.3);
-  this.tl5 = new TimelineMax({ paused: true }).delay(0.3);
+//   this.tl5 = new TimelineMax({ paused: true }).delay(0.3);
   this.tl6 = new TimelineMax({ paused: true }).delay(0.3);
   this.tl7 = new TimelineMax({ paused: true }).delay(0.3);
   this.tl8 = new TimelineMax({ paused: true }).delay(0.3);
@@ -230,7 +261,7 @@ window.addEventListener("resize", () => {
   this.tl2.to(sun.position, 4, { x: 1 });
   this.tl3.to(merc.position, 4, { x: 1 });
   this.tl4.to(earth.position, 4, { x: 1 });
-  this.tl5.to(earth2.position, 4, { x: 1 });
+//   this.tl5.to(earth2.position, 4, { x: 1 });
   this.tl6.to(mars.position, 4, { x: 1 });
   this.tl7.to(jup.position, 4, { x: 1 });
   this.tl8.to(sat.position, 4, { x: 1 });
@@ -242,44 +273,44 @@ window.addEventListener("resize", () => {
   this.tl3.to(merc.position, 9, { y: 60 });
   this.tl1.to(ven.position, 9, { y: 80 });
   this.tl4.to(earth.position, 9, { y: 100 });
-  this.tl5.to(earth2.position, 9, { y: 120 });
-  this.tl6.to(mars.position, 9, { y: 140 });
-  this.tl7.to(jup.position, 9, { y: 160 });
-  this.tl8.to(sat.position, 9, { y: 180 });
-  this.tl9.to(uran.position, 9, { y: 200 });
-  this.tl10.to(nep.position, 9, { y: 220 });
-  this.tl11.to(plu.position, 9, { y: 240 });
+//   this.tl5.to(earth2.position, 9, { y: 120 });
+  this.tl6.to(mars.position, 9, { y: 120 });
+  this.tl7.to(jup.position, 9, { y: 140 });
+  this.tl8.to(sat.position, 9, { y: 160 });
+  this.tl9.to(uran.position, 9, { y: 180 });
+  this.tl10.to(nep.position, 9, { y: 200 });
+  this.tl11.to(plu.position, 9, { y: 220 });
 
   //undo
-  this.tl3.to(merc.position, 6, { y: 50 }); //
-  this.tl1.to(ven.position, 6, { y: 70 }); //
-  this.tl4.to(earth.position, 6, { y: -80 }); //
-  this.tl5.to(earth2.position, 6, { y: -80 }); //
-  this.tl6.to(mars.position, 6, { y: -150 }); //
-  this.tl7.to(jup.position, 6, { y: -190 }); //
-  this.tl8.to(sat.position, 6, { y: -220 }); //
-  this.tl9.to(uran.position, 6, { y: 270 }); //
-  this.tl10.to(nep.position, 6, { y: 300 }); //
-  this.tl11.to(plu.position, 6, { y: 340 });
+  this.tl3.to(merc.position, 5, { y: 50 }); //
+  this.tl1.to(ven.position, 5, { y: 70 }); //
+  this.tl4.to(earth.position, 5, { y: -80 }); //
+//   this.tl5.to(earth2.position, 6, { y: -80 }); //
+  this.tl6.to(mars.position, 5, { y: -150 }); //
+  this.tl7.to(jup.position, 5, { y: -190 }); //
+  this.tl8.to(sat.position, 5, { y: -220 }); //
+  this.tl9.to(uran.position, 5, { y: 270 }); //
+  this.tl10.to(nep.position, 5, { y: 300 }); //
+  this.tl11.to(plu.position, 5, { y: 340 });
 
-  this.tl1.to(ven.position, 6, { x: 70 }); //
-  this.tl3.to(merc.position, 6, { x: 50 }); //
-  this.tl4.to(earth.position, 6, { x: 80 }); //
-  this.tl5.to(earth2.position, 6, { x: 80 }); //
-  this.tl6.to(mars.position, 6, { x: -50 }); //
-  this.tl7.to(jup.position, 6, { x: 100 }); //
-  this.tl8.to(sat.position, 6, { x: 190 }); //
-  this.tl9.to(uran.position, 6, { x: 9 }); //
-  this.tl10.to(nep.position, 6, { x: 90 });
-  this.tl11.to(plu.position, 6, { x: 10 });
+  this.tl1.to(ven.position, 5, { x: 70 }); //
+  this.tl3.to(merc.position, 5, { x: 50 }); //
+  this.tl4.to(earth.position, 5, { x: 80 }); //
+//   this.tl5.to(earth2.position, 6, { x: 80 }); //
+  this.tl6.to(mars.position, 5, { x: -50 }); //
+  this.tl7.to(jup.position, 5, { x: 100 }); //
+  this.tl8.to(sat.position, 5, { x: 190 }); //
+  this.tl9.to(uran.position, 5, { x: 9 }); //
+  this.tl10.to(nep.position, 5, { x: 90 });
+  this.tl11.to(plu.position, 5, { x: 10 });
 
-  document.querySelector("button").addEventListener("click", () => {
+  document.getElementById("buttonA").addEventListener("click", () => {
     tl.play().restart();
     tl1.play().restart();
     tl2.play().restart();
     tl3.play().restart();
     tl4.play().restart();
-    tl5.play().restart();
+    // tl5.play().restart();
     tl6.play().restart();
     tl7.play().restart();
     tl8.play().restart();
@@ -293,4 +324,13 @@ window.addEventListener("resize", () => {
 
   });
 
+  document.getElementById("popbutton").addEventListener("click", () => {
+    var x = document.getElementById("pop")
+     if (x.style.display === "none") {
+     x.style.display = "block";
+   } else {
+     x.style.display = "none";
+   }
+   })
+  
   animate();

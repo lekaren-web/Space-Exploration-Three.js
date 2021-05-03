@@ -20,6 +20,8 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
-    "three": "^0.128.0"
+    "require": "^2.4.20",
+    "three": "^0.128.0",
+    "three-orbitcontrols": "^2.110.3"
   }
 }

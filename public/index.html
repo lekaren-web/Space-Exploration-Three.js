@@ -14,7 +14,15 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
-
+    <script type ='module'>
+      import { OrbitControls } from "https://threejs.org/examples/jsm/controls/OrbitControls.js";
+     let controls = new OrbitControls(camera, renderer.domElement)
+    </script>
+<!-- 
+    <script type='module'>
+      import {PointerLockControls} from "https://threejs.org/examples/jsm/controls/PointerLockControls.js"
+     let controls = new PointerLockControls(camera, renderer.domElement)
+    </script> -->
     <script>
      let divContainer = document.createElement("container");
 
@@ -33,10 +41,13 @@
       renderer.setSize(window.innerWidth - 170, window.innerHeight);
 
       document.body.appendChild(renderer.domElement);
-      // const controls = new OrbitControls( camera, renderer.domElement );
-      // controls.update()
-
     </script>
+    <div class ="popup" id="pop" >
+      <ul>
+     <li><h4>Use mouse scroll wheel to zoom in and out!</h4></li>
+      <li><h4>Left click and drag for orbital controls to look around</h4></li>
+    </ul>
+    </div>
     <div class='header1'>
       <h1>Space Exploration</h1>
     </div>
@@ -45,10 +56,11 @@
       <label>Rotation Speed</label>
       <input id="speed" type="range" min="0" max="10" value='5' />
       <label> Align Planets</label>
-      <button type="button" class="button"></button>
-      <script src='./jv.js'></script>
+      <button type="button" class="button" id="buttonA"></button>
+      <label>Interaction Tips</label>
+      <button type="button" id="popbutton" ></button>
     </div>
-
+    <script src='./jv.js'></script>
     </body>
   </body>
 </html>
