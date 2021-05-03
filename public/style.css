@@ -4,7 +4,7 @@ body {
 
   background-image: radial-gradient(
       rgba(32, 7, 74, 0.267),
-      rgba(0, 0, 0, 0.205)
+      rgba(0, 0, 0, 0.639)
     ),
     url("https://thefulldomeblog.files.wordpress.com/2013/06/cropped-starglobe-maya-render.jpg");
 
@@ -23,11 +23,22 @@ canvas {
   position: fixed;
   display: inline-block;
 }
-button {
+#popbutton {
+  align-self: center;
+
   margin: 20px;
   padding: 10px;
   border-radius: 5px;
   background-image: radial-gradient(rgb(16, 0, 31), rgb(46, 9, 120));
+  width: 90px;
+}
+#buttonA {
+  align-self: center;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-image: radial-gradient(rgb(16, 0, 31), rgb(46, 9, 120));
+  width: 90px;
 }
 h1 {
   font-family: monospace;
@@ -78,7 +89,7 @@ input {
     url("https://thefulldomeblog.files.wordpress.com/2013/06/cropped-starglobe-maya-render.jpg");
   display: none;
   position: fixed;
-  top: 60%;
+  top: 40%;
   right: 10%;
   justify-content: center;
   border: 1px solid white;
@@ -87,3 +98,27 @@ input {
   width: 300px;
   height: 200px;
 }
+
+#smol {
+align-self: center;
+color:white;
+width: 70px;
+text-align: center;
+background-image: radial-gradient(rgb(16, 0, 31), rgb(46, 9, 120));
+padding: 1px;
+margin: 2px;
+border-radius: 5px;
+
+}
+
+#smolm {
+  align-self: center;
+  color:white;
+  width: 10px;
+  text-align: center;
+  background-image: radial-gradient(rgb(16, 0, 31), rgb(46, 9, 120));
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  
+  }

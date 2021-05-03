@@ -1,4 +1,4 @@
-
+  
 const loader = new THREE.TextureLoader();
 window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth - 170, window.innerHeight);
@@ -93,7 +93,6 @@ window.addEventListener("resize", () => {
 
   const earthmat = new THREE.MeshStandardMaterial({
     map: loader.load('earth.png'),
-    color: 'lightblue'
   });
 
   earth = new THREE.Mesh(earthgeo, earthmat);
@@ -107,24 +106,26 @@ window.addEventListener("resize", () => {
   earth.castShadow = true;
   earth.name = 'Earth'
   scene.add(earth);
-  //earthLayer2
-//   const earthgeo2 = new THREE.SphereGeometry(7, 60, 100);
 
-//   const earthmat2 = new THREE.MeshStandardMaterial({
-//     color: "blue",
-//   });
+ 
+  const moongeo2 = new THREE.SphereGeometry(2, 45, 100);
 
-//   earth2 = new THREE.Mesh(earthgeo2, earthmat2);
-//   earth2.rotation.x = 9;
-//   earth2.position.y = -80;
-//   earth2.position.x = 80;
-//   earth2.position.z = 1;
-//   earth2.rotation.y = 8;
-//   earth2.rotation.set(9, 3, 3);
-//   earth2.receiveShadow = true;
-//   earth2.castShadow = true;
+  const moonmat2 = new THREE.MeshStandardMaterial({
+    map: loader.load('moon.jpeg'),
 
-//   scene.add(earth2);
+  });
+
+  moon = new THREE.Mesh(moongeo2, moonmat2);
+  moon.rotation.x = 15;
+  moon.position.y = -90;
+  moon.position.x = 100;
+  moon.position.z = 1;
+  moon.rotation.y = 8;
+  moon.rotation.set(9, 3, 3);
+  moon.receiveShadow = true;
+  moon.castShadow = true;
+
+  scene.add(moon);
   //mars
   const marsgeo = new THREE.SphereGeometry(8, 60, 80);
 
@@ -220,7 +221,7 @@ window.addEventListener("resize", () => {
   const plugeo = new THREE.SphereGeometry(3, 60, 80);
 
   const plumat = new THREE.MeshStandardMaterial({
-    map: loader.load('plu.png'),
+    map: loader.load('pluto.jpeg'),
 
 
   });
@@ -235,14 +236,20 @@ window.addEventListener("resize", () => {
   plu.castShadow = true;
   plu.name = 'Pluto'
   scene.add(plu);
+  
   const animate = function () {
-    requestAnimationFrame(animate);
+    if (camera.position.z === 4 && camera.position.y === -90 && camera.position.x===100 && camera.rotation.x === 75 && camera.rotation.y === -120){
+    renderer.render(scene, camera);
+
+    } else {
+   requestAnimationFrame(animate);
     camera.rotation.z -= document.getElementById("speed").value / 450;
     // earth2.rotation.y += 0.00000001;
     ven.rotation.x -= 0.000002;
     mars.rotation.y -= 0.000001;
     jup.rotation.y += 0.0000001;
     renderer.render(scene, camera);
+    }
   }; 
   this.tl = new TimelineMax({ paused: true }).delay(0.3);
   this.tl1 = new TimelineMax({ paused: true }).delay(0.3);
@@ -333,4 +340,8 @@ window.addEventListener("resize", () => {
    }
    })
   
+
+
+   //moon exploring secret 
+   
   animate();
