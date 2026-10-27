@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Space Exploration</title>
+    <meta name="description" content="An interactive Three.js tour of the solar system: fly to each planet, change the speed and line up the orbits." />
+    <meta name="theme-color" content="#03040a" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='7' fill='%23ffb347'/%3E%3Cellipse cx='16' cy='16' rx='14' ry='5' fill='none' stroke='%23e6d3a3' stroke-width='2'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;500&family=Atkinson+Hyperlegible+Next:wght@400;600;700&family=Instrument+Serif&display=swap" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="stage"></div>
+    <p class="loading" aria-live="polite">Painting planets…</p>
+
+    <header class="title">
+      <h1>Space Exploration</h1>
+      <p class="mono">A Three.js tour of the solar system</p>
+      <p class="hint">Tap a planet to fly there</p>
+    </header>
+
+    <nav class="panel" aria-label="Solar system">
+      <h2 class="mono">Fly to</h2>
+      <ul id="bodies" class="bodies"></ul>
+      <div class="controls">
+        <label class="mono" for="speed">Speed <output id="speed-out" for="speed">1×</output></label>
+        <input id="speed" type="range" min="0" max="5" step="0.25" value="1" />
+        <div class="buttons">
+          <button type="button" id="pause" aria-pressed="false">Pause</button>
+          <button type="button" id="align">Align planets</button>
+          <button type="button" id="overview">Overview</button>
+          <button type="button" id="labels" aria-pressed="true">Labels</button>
+        </div>
+      </div>
+    </nav>
+
+    <section id="info" class="info" aria-live="polite" aria-label="About the selected body"></section>
+
+    <footer>
+      <p class="credit">
+        Built by <a href="https://karen-le.vercel.app">Karen Le</a> ·
+        <a href="https://github.com/lekaren-web/Space-Exploration-Three.js">Code</a>
+      </p>
+    </footer>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
